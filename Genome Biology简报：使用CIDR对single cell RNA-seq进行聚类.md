@@ -8,9 +8,9 @@ CIDR：https://github.com/VCCRI/CIDR
 
 ## 算法思想   
 
-令$C_{i}=(o_{1,i},o_{2,i},...,o_{n,i})$和$C_{j}=(o_{1,j},o_{2,j},...,o_{n,j})$为两个细胞中的基因表达向量，则可衡量其距离如下，即可分成三部分，都是非dropouts的基因距离，含有一个dropouts的和都是dropouts的：
+令![equation](http://latex.codecogs.com/gif.latex?C_{i}=(o_{1,i},o_{2,i},...,o_{n,i}),C_{j}=(o_{1,j},o_{2,j},...,o_{n,j}))为两个细胞中的基因表达向量，则可衡量其距离如下，即可分成三部分，都是非dropouts的基因距离，含有一个dropouts的和都是dropouts的：
 
-$ [D(C_{i},C_{j})]^{2} = \sum_{k}^{n} (o_{k,i}-o_{k,j})^{2} = \sum_{k \in noDropouts} (o_{k,i}-o_{k,j})^{2} +\sum_{k \in bothDropouts} (o_{k,i}-o_{k,j})^{2} + \sum_{k \in oneDropouts} (o_{k,i}-o_{k,j})^{2}$
+![equation](http://latex.codecogs.com/gif.latex?[D(C_{i},C_{j})]^{2}=\sum_{k}^{n}(o_{k,i}-o_{k,j})^{2}=\sum_{k\in noDropouts}(o_{k,i}-o_{k,j})^{2}+\sum_{k\in bothDropouts}(o_{k,i}-o_{k,j})^{2}+\sum_{k \in oneDropouts}(o_{k,i}-o_{k,j})^{2}$
 
 所以，影响样本聚类就是这种oneDropouts的情况，然后根据已知的情况，越是表达量低的基因越有可能称为dropouts, 所以可以根据这个来对dropouts和表达量建个model，来补齐dropouts，得到上面值的dissimilarity matrix。然后，应用我们在sklearn: k-means提过的，先PCA，选前几个components然后再聚类，这一步，当然很快。
 
@@ -18,12 +18,12 @@ $ [D(C_{i},C_{j})]^{2} = \sum_{k}^{n} (o_{k,i}-o_{k,j})^{2} = \sum_{k \in noDrop
 
 ## 在模拟数据中的应用 
 
-如下，和比较常用的直接PCA，t-SNE, ZIFA RaceID等比较，看上去是好了不少，其中的评价指标Adjusted Rand Index我们在（sklearn: 聚类性能评估）中提过。
-
+如下，和比较常用的直接PCA，t-SNE, ZIFA RaceID等比较，看上去是好了不少，其中的评价指标Adjusted Rand Index我们在[sklearn: 聚类性能评估](https://github.com/NGSHotpot/sklearn/blob/master/sklearn:%E8%81%9A%E7%B1%BB%E6%80%A7%E8%83%BD%E8%AF%84%E4%BC%B0.md) 中提过。
+![]()
 
 ## 在真实数据中的应用   
 
-如下，感觉上依旧好了许多。
+如下，感觉上和从Adjusted Rnad Index上看好了许多。
 
 
 
